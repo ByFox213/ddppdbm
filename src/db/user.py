@@ -6,6 +6,7 @@ from .exceptions import PlayerNotFoundError, UserIsLoggedInError
 
 __all__ = ("UserSet", "UserGet", "UserTools", "User")
 
+
 def get_h(kwargs: dict) -> list[str]:
     return [f"{key}=?" for key, value in kwargs.items()]
 
@@ -23,7 +24,7 @@ class UserSet:
 
 class UserGet:
     basic_columns = ", ".join(x for x in columns)  # god save please us
-    get_query = "SELECT {basic_columns} FROM Accounts WHERE {columns} LIMIT {limit} OFFSET {offset}" # noqa: E501
+    get_query = "SELECT {basic_columns} FROM Accounts WHERE {columns} LIMIT {limit} OFFSET {offset}"  # noqa: E501
 
     @staticmethod
     async def get(db: aiosqlite.Connection, offset=0, limit=50, **kwargs):
@@ -103,7 +104,3 @@ class User(UserGet, UserSet, UserTools):
     async def execute(db: aiosqlite.Connection, query, params):
         cursor = await db.execute(query, params)
         await cursor.close()
-
-
-
-

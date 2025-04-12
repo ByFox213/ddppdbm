@@ -34,4 +34,3 @@ def format_users(user_info: list[tuple]):
     for user in users:
         text += f"/user{user['id']}\t{user['Username']}\n"
     return text
-

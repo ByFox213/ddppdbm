@@ -44,7 +44,7 @@ async def help_message(message: Message) -> None:
 async def chat(message: Message) -> None:
     log(message)
     await message.reply(
-        f"If you can see this message, you have access\nchat_id: {message.chat.id}\nthread_id: {message.message_thread_id}" # noqa: E501
+        f"If you can see this message, you have access\nchat_id: {message.chat.id}\nthread_id: {message.message_thread_id}"  # noqa: E501
     )
 
 
@@ -191,4 +191,3 @@ async def freeze(
     username = args[0]
     status = args[1]
     await _try(message, User.set_freeze, db, username, status)
-

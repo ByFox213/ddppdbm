@@ -20,4 +20,3 @@ class DatabaseMiddleware(BaseMiddleware):
             data["db"] = db
             logging.info("database loaded")
             return await handler(event, data)
-

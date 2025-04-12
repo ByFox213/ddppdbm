@@ -21,4 +21,3 @@ async def start_bot(config: ConfigModel):
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
     await bot.setup_handlers()
     await dp.start_polling(bot)
-
