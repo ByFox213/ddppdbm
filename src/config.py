@@ -1,4 +1,4 @@
-import src.yamlparser
+from src.yamlparser import ConfigModel, open_config
 
-def get_config():
-    return src.yamlparser.open_config("config.yaml")
+def get_config() -> ConfigModel:
+    return ConfigModel(**open_config("config.yaml"))

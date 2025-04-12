@@ -1,8 +1,11 @@
 import asyncio
 import telegram
-import config
+from src.yamlparser import ConfigModel, open_config
+
+
 async def main() -> None:
-    await telegram.start_bot(config.get_config())
+    await telegram.start_bot(ConfigModel(**open_config("config.yaml")))
+
 
 if __name__ == "__main__":
     # logging.basicConfig(level=logging.INFO, stream=sys.stdout)

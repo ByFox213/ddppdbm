@@ -1,17 +1,25 @@
 import yaml
+from pydantic import BaseModel, SecretStr
+
 
 def open_config(config_file):
-    return yaml.safe_load(open(config_file))
+    with open(config_file, encoding="utf-8") as file:
+        return yaml.safe_load(file)
 
-class Database():
-    """Class to parse yaml config and get database path"""
-    def __init__(self, cfg):
-        self.db_path = cfg['database']['path']
 
-class Telegram():
-    """Class to parse yaml config and get telegram properties"""
-    def __init__(self, cfg):
-        # self.chat_id = cfg['telegram']['access']['chat_id']
-        # self.thread_id = cfg['telegram']['access']['thread_id']
-        self.token = cfg['telegram']['token']
-        self.access = cfg['telegram']['access']
+class User(BaseModel):
+    level: str | int
+
+
+class TelegramModel(BaseModel):
+    token: SecretStr
+    access: dict[str | int, User]
+
+
+class DBModel(BaseModel):
+    path: str
+
+
+class ConfigModel(BaseModel):
+    telegram: TelegramModel
+    database: DBModel
